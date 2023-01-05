@@ -18,9 +18,9 @@
         flex-direction: column;
         justify-content: center;
         align-content: center;
-        gap: 50px;
+        gap: 80px;
 
-        background-color: beige;
+        background-color: lightgray;
         width: 500px;
         height: 500px;
         border-radius: 10px;
@@ -39,11 +39,31 @@
       }
 
       button {
-        border: 2px solid goldenrod;
+        border: none;
         border-radius: 10px;
         width: 100px;
         height: 50px;
         font-family: "Times New Roman", Times, serif;
+      }
+
+      button:hover {
+        background-color: #ff7b54;
+      }
+
+      .scores {
+        display: flex;
+        justify-content: center;
+        gap: 150px;
+      }
+
+      .score {
+        font-size: 3rem;
+      }
+
+      [class^="score-"] {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
     </style>
   </head>
@@ -51,9 +71,19 @@
     <div class="content">
       <div class="result">...</div>
       <div class="buttons">
-        <button>Rock</button>
-        <button>Paper</button>
-        <button>Scissor</button>
+        <button data-id="rock">Rock</button>
+        <button data-id="paper">Paper</button>
+        <button data-id="scissor">Scissor</button>
+      </div>
+      <div class="scores">
+        <div class="score-one">
+          <div class="score" id="score-player">0</div>
+          <label for="score-player">Player</label>
+        </div>
+        <div class="score-two">
+          <div class="score" id="score-computer">0</div>
+          <label for="score-computer">Computer</label>
+        </div>
       </div>
     </div>
   </body>
