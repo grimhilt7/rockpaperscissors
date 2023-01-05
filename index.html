@@ -6,6 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock, Paper, Scissor</title>
     <script src="app.js" defer></script>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        margin-top: 10vh;
+      }
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        gap: 50px;
+
+        background-color: beige;
+        width: 500px;
+        height: 500px;
+        border-radius: 10px;
+      }
+
+      .result {
+        font-size: 4rem;
+        text-align: center;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        gap: 50px;
+      }
+
+      button {
+        border: 2px solid goldenrod;
+        border-radius: 10px;
+        width: 100px;
+        height: 50px;
+        font-family: "Times New Roman", Times, serif;
+      }
+    </style>
   </head>
-  <body></body>
+  <body>
+    <div class="content">
+      <div class="result">...</div>
+      <div class="buttons">
+        <button>Rock</button>
+        <button>Paper</button>
+        <button>Scissor</button>
+      </div>
+    </div>
+  </body>
 </html>
