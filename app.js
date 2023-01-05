@@ -10,9 +10,10 @@ function createPlayers(name) {
     }
   };
 }
+const player = createPlayers("player");
+const computer = createPlayers("computer");
 
-// an AI that randomly returns either r, p, or s (rock, paper, and scissor accordingly).
-// eslint-disable-next-line consistent-return
+// randomly returns either r, p, or s (rock, paper, and scissor accordingly).
 function getComputerChoice() {
   const num = Math.random();
   if (num > 0 && num <= 0.33) {
@@ -25,11 +26,8 @@ function getComputerChoice() {
     return "s"; }
 }
 
-const player = createPlayers("player");
-const computer = createPlayers("computer");
-
-function algorithm(arr) {
-  const str = arr.sort().join('')
+function algorithm(choiceOne, choiceTwo) {
+  const str = [choiceOne, choiceTwo].sort().join('')
   switch (str) {
     case "rs": return "r";
     case "ps": return "s";
@@ -38,40 +36,44 @@ function algorithm(arr) {
   }
 };
 
-// called to plays a single round game and returns a string that determines the winner
+// plays a single round game, and returns a string that determines the winner
 function play(playerOne, playerTwo) {
-  const result = algorithm([playerOne.choice, playerTwo.choice]);
+  const result = algorithm(playerOne.choice, playerTwo.choice);
   if (playerOne.choice === result) {
     playerOne.win();
+    console.log(`${playerOne.id} won!`);
   }
   if (playerTwo.choice === result) {
     playerTwo.win();
+    console.log(`${playerTwo.id} won!`);
   }
 }
 
-// called to plays five games in the condition of three wins first to win, and returns a string that determines the final winner
-// eslint-disable-next-line no-unused-vars
+// plays five games in the condition of three wins first to win, and returns a string that determines the final winner
 function game() {
-  // for loop play five rounds
-  player.choice = prompt("...");
-  computer.choice = getComputerChoice();
-  play(player, computer)
+  [player.winCount, computer.winCount] = [0, 0];
 
-  // if (player.winCount >= 3) {
-  //   return player;
-  // }
-  // if (computer.winCount >= 3) {
-  //   return computer;
-  // }
-  // // ---
+  for (let i=0; i <= 4; i++) {
+    player.choice = prompt("...");
+    computer.choice = getComputerChoice();
 
-  // if (player.winCount > computer.winCount) {
-  //   return player
-  // }
-  // if (player.winCount < computer.winCount) {
-  //   return computer
-  // } 
-  // if (player.winCount === computer.winCount) {
-  //   return "DRAW"
-  // }
+    play(player, computer)
+
+    if (player.winCount >= 3) {
+      return player;
+    }
+    if (computer.winCount >= 3) {
+      return computer;
+    }
+  }
+
+  if (player.winCount > computer.winCount) {
+    return player
+  }
+  if (player.winCount < computer.winCount) {
+    return computer
+  } 
+  if (player.winCount === computer.winCount) {
+    return "DRAW"
+  }
 }
